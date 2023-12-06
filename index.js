@@ -18,8 +18,12 @@ app.put("/api/customers/:id", query.updateCustomer);
 app.put("/api/customers/:id", auth.authenticate, query.updateCustomer);
 app.post("/login", auth.login);
 
-app.listen(port, () => {{}
+app.listen(process.env.PORT || 3000, () => {
   console.log(`Server is running on port ${port}.`);
 });
+
+// Include helmet
+const helmet = require('helmet');
+app.use(helmet());
 
 module.exports = app;
